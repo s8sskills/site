@@ -1,0 +1,127 @@
+{{ define "main" }}
+{{ $site := .Site }}
+<header class="site-header">
+  <a class="brand" href="/" aria-label="s8s skills home">
+    <img class="brand-mark" src="{{ "logo.png" | relURL }}" alt="" width="56" height="54" />
+    <span class="brand-word">s<span class="brand-8">8</span>s<span class="brand-skills">skills</span></span>
+  </a>
+  <nav class="site-nav">
+    <a href="#providers">Providers</a>
+    <a href="#how">How it works</a>
+    <a href="{{ $site.Params.github }}" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <p class="eyebrow">open serverless skill catalog</p>
+    <h1 class="hero-title">{{ $site.Params.tagline }}</h1>
+    <p class="hero-sub">{{ $site.Params.subtitle }}</p>
+
+    <div class="terminal" role="group" aria-label="install command">
+      <div class="terminal-bar">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="terminal-name">your-project</span>
+      </div>
+      <div class="terminal-body">
+        <code id="install-cmd"><span class="prompt">$</span> {{ $site.Params.install }}</code>
+        <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#providers">Browse providers</a>
+      <a class="btn btn-ghost" href="{{ $site.Params.github }}" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </section>
+
+  <section class="section" id="what">
+    <div class="what-grid">
+      <div class="what-copy">
+        <h2>What's a skill?</h2>
+        <p>A <strong>skill</strong> is a small, version-controlled bundle of instructions and helper scripts that teaches an AI coding agent how to do one thing well. An s8s skill teaches your agent a cloud's serverless story end to end — project layout, deploy commands, IAM gotchas, and the conventions a senior engineer would already know.</p>
+        <p>Skills are plain files. They live in your repo, get reviewed in pull requests, and work with any skills-aware agent — Claude Code, Cursor, and friends.</p>
+      </div>
+      <ul class="what-points">
+        <li><span class="tick">◆</span> One command, zero config</li>
+        <li><span class="tick">◆</span> Version-pinned &amp; committed to your repo</li>
+        <li><span class="tick">◆</span> Provider-agnostic install, provider-expert content</li>
+        <li><span class="tick">◆</span> MIT-licensed &amp; open on GitHub</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="providers">
+    <h2 class="section-title">Providers</h2>
+    <p class="section-lede">A repo per cloud under <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">github.com/s8sskills</a>. Install any of them by id.</p>
+    <div class="provider-grid">
+      {{ range $site.Params.providers }}
+      {{ $available := eq .status "available" }}
+      <a class="provider-card{{ if not $available }} is-soon{{ end }}"
+         {{ if $available }}href="{{ $site.Params.github }}/{{ .id }}" target="_blank" rel="noopener"{{ end }}
+         style="--accent: {{ .accent }}">
+        <div class="provider-top">
+          <span class="provider-id">{{ .id }}</span>
+          <span class="badge {{ if $available }}badge-on{{ else }}badge-soon{{ end }}">{{ .status }}</span>
+        </div>
+        <h3 class="provider-name">{{ .name }}</h3>
+        <p class="provider-blurb">{{ .blurb }}</p>
+        <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+      {{ range $site.Params.steps }}
+      <div class="step">
+        <span class="step-num">{{ .num }}</span>
+        <h3>{{ .title }}</h3>
+        <p>{{ .body | markdownify }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <h2>Give your agent a serverless superpower.</h2>
+    <div class="terminal terminal-sm">
+      <div class="terminal-body">
+        <code><span class="prompt">$</span> {{ $site.Params.install }}</code>
+        <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="{{ "icon-48.png" | relURL }}" alt="" width="28" height="28" />
+    <span>s<span class="brand-8">8</span>sskills</span>
+  </div>
+  <p class="footer-note">“s8s” = <span class="mono">serverless</span> — the s, 8 letters, and s. Open source under MIT.</p>
+  <div class="footer-links">
+    <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:{{ $site.Params.email }}">Contact</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        var prev = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.textContent = prev;
+          btn.classList.remove('copied');
+        }, 1600);
+      });
+    });
+  });
+</script>
+{{ end }}

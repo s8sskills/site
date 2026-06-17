@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0a18"/>
+      <stop offset="1" stop-color="#15122c"/>
+    </linearGradient>
+    <radialGradient id="glowM" cx="0.18" cy="0.3" r="0.5">
+      <stop offset="0" stop-color="#d848d8" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#d848d8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowC" cx="0.92" cy="0.85" r="0.55">
+      <stop offset="0" stop-color="#3ccce4" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#3ccce4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d848d8"/>
+      <stop offset="0.5" stop-color="#7b54e0"/>
+      <stop offset="1" stop-color="#3ccce4"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glowM)"/>
+  <rect width="1200" height="630" fill="url(#glowC)"/>
+
+  <image x="60" y="135" width="360" height="360" xlink:href="../assets/brand/logo-mark.png" preserveAspectRatio="xMidYMid meet"/>
+
+  <g font-family="'Space Grotesk', 'Helvetica Neue', Arial, sans-serif">
+    <text x="470" y="250" font-size="92" font-weight="700" fill="#ffffff">s<tspan fill="url(#word)">8</tspan>s<tspan fill="#a6a2cf" font-weight="500">skills</tspan></text>
+    <text x="474" y="330" font-size="40" font-weight="600" fill="#edebff">Serverless skills for your AI agent</text>
+
+    <g transform="translate(474, 380)">
+      <rect width="640" height="68" rx="14" fill="#16142e" stroke="#2a2752"/>
+      <text x="28" y="44" font-family="'JetBrains Mono', monospace" font-size="28" fill="#edebff"><tspan fill="#3ccce4">$ </tspan>npx skills add s8sskills/gcp</text>
+    </g>
+
+    <text x="474" y="500" font-size="26" font-weight="500" fill="#6f6b9a">s8sskills.com  ·  open source on GitHub</text>
+  </g>
+</svg>

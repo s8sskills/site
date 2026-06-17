@@ -1,0 +1,79 @@
+baseURL = "https://s8sskills.com/"
+locale = "en-us"
+title = "s8s skills — serverless skills for your AI agent"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term", "rss"]
+
+[params]
+  tagline = "Serverless skills for your AI agent"
+  subtitle = "One command drops battle-tested serverless skills into your project, so your coding agent knows how to build and ship on every cloud."
+  description = "s8s skills is an open catalog of serverless skills for AI coding agents. Run npx skills add s8sskills/<vendor> to teach your agent how to build and deploy serverless apps on GCP, AWS, and more."
+  install = "npx skills add s8sskills/gcp"
+  github = "https://github.com/s8sskills"
+  email = "hello@s8sskills.com"
+
+  # The "s8s" wordmark is rendered as s·8·s; this is the expansion shown on hover/footer.
+  expansion = "s — erverles — s"
+
+[[params.steps]]
+  num = "01"
+  title = "Run one command"
+  body = "`npx skills add s8sskills/gcp` pulls the vendor's skill pack straight from the s8sskills GitHub org — no account, no config."
+
+[[params.steps]]
+  num = "02"
+  title = "Skills land in your repo"
+  body = "Each pack installs into your project's agent skills directory, version-pinned and ready to read. Inspect them, commit them, edit them."
+
+[[params.steps]]
+  num = "03"
+  title = "Your agent ships serverless"
+  body = "Claude Code, Cursor, or any skills-aware agent now knows the provider's serverless idioms — scaffolding, deploy commands, gotchas and all."
+
+[[params.providers]]
+  id = "gcp"
+  name = "Google Cloud"
+  blurb = "Cloud Run, Cloud Functions & Firebase deploys"
+  status = "available"
+  accent = "#4285F4"
+
+[[params.providers]]
+  id = "aws"
+  name = "Amazon Web Services"
+  blurb = "Lambda, App Runner & SAM workflows"
+  status = "available"
+  accent = "#FF9900"
+
+[[params.providers]]
+  id = "vercel"
+  name = "Vercel"
+  blurb = "Edge & serverless functions"
+  status = "coming soon"
+  accent = "#EDEBFF"
+
+[[params.providers]]
+  id = "netlify"
+  name = "Netlify"
+  blurb = "Functions & edge deploys"
+  status = "coming soon"
+  accent = "#32E6E2"
+
+[[params.providers]]
+  id = "cloudflare"
+  name = "Cloudflare"
+  blurb = "Workers & Pages at the edge"
+  status = "coming soon"
+  accent = "#F38020"
+
+[[params.providers]]
+  id = "azure"
+  name = "Microsoft Azure"
+  blurb = "Functions & Container Apps"
+  status = "coming soon"
+  accent = "#0078D4"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[minify]
+  disableHTML = false
