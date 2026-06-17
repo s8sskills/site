@@ -42,7 +42,7 @@ Requires Python with Pillow and `rsvg-convert` on PATH (`brew install librsvg`).
 
 | File | What |
 | --- | --- |
-| `hachidori-1.png` | Source hummingbird art (4167², transparent) |
+| `assets/brand/hachidori-1.png` | Source hummingbird art (4167², transparent) |
 | `tools/make_badge.py` | Generates the skill-medallion SVG from the shared palette |
 | `tools/make_logo.py` | Composites bird + medallion, emits favicons/app icons |
 | `tools/og.svg` / `tools/make_og.py` | Social card (mark embedded as data URI) |
