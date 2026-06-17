@@ -12,7 +12,7 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BRAND = os.path.join(ROOT, "assets", "brand")
 STATIC = os.path.join(ROOT, "static")
-BIRD = os.path.join(ROOT, "hachidori-1.png")
+BIRD = os.path.join(BRAND, "hachidori-1.png")
 BADGE_SVG = os.path.join(BRAND, "badge.svg")
 
 
