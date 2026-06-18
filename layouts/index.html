@@ -67,7 +67,12 @@
         </div>
         <h3 class="provider-name">{{ .name }}</h3>
         <p class="provider-blurb">{{ .blurb }}</p>
-        <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
+        <div class="provider-cmd-wrapper">
+          <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
+          {{ if $available }}
+          <button class="copy-btn provider-copy-btn" data-copy="npx skills add s8sskills/{{ .id }}" aria-label="Copy command">Copy</button>
+          {{ end }}
+        </div>
       </a>
       {{ end }}
     </div>
@@ -111,7 +116,9 @@
 
 <script>
   document.querySelectorAll('.copy-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       navigator.clipboard.writeText(btn.dataset.copy).then(function () {
         var prev = btn.textContent;
         btn.textContent = 'Copied!';
