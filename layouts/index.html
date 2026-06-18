@@ -60,13 +60,14 @@
       {{ $available := eq .status "available" }}
       <a class="provider-card{{ if not $available }} is-soon{{ end }}"
          {{ if $available }}href="{{ $site.Params.github }}/{{ .id }}" target="_blank" rel="noopener"{{ end }}
-         style="--accent: {{ .accent }}">
+         style="--accent: {{ .accent }}"
+         {{ if $available }}itemscope itemtype="https://schema.org/SoftwareApplication"{{ end }}>
         <div class="provider-top">
           <span class="provider-id">{{ .id }}</span>
           <span class="badge {{ if $available }}badge-on{{ else }}badge-soon{{ end }}">{{ .status }}</span>
         </div>
-        <h3 class="provider-name">{{ .name }}</h3>
-        <p class="provider-blurb">{{ .blurb }}</p>
+        <h3 class="provider-name" {{ if $available }}itemprop="name"{{ end }}>{{ .name }}</h3>
+        <p class="provider-blurb" {{ if $available }}itemprop="description"{{ end }}>{{ .blurb }}</p>
         {{ if .skills }}
         <div class="provider-skills">
           <span class="skills-label">Included skills</span>
@@ -74,9 +75,9 @@
             {{ range .skills }}
             <li>
               <span class="skill-dot">✦</span>
-              <div class="skill-info">
-                <span class="skill-name">{{ .name }}</span>
-                <span class="skill-desc">{{ .desc }}</span>
+              <div class="skill-info" itemscope itemtype="https://schema.org/SoftwareSourceCode">
+                <span class="skill-name" itemprop="name">{{ .name }}</span>
+                <span class="skill-desc" itemprop="description">{{ .desc }}</span>
               </div>
             </li>
             {{ end }}
