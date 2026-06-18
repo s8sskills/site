@@ -36,6 +36,12 @@ disableKinds = ["taxonomy", "term", "rss"]
   blurb = "Cloud Run, Cloud Functions & Firebase deploys"
   status = "available"
   accent = "#4285F4"
+  skills = [
+    { name = "gcloud-project-setup", desc = "Configure gcloud CLI, active project, & authentication" },
+    { name = "cloud-run-deploy", desc = "Deploy serverless containers to Cloud Run" },
+    { name = "cloud-functions-deploy", desc = "Deploy HTTP & event-triggered Cloud Functions" },
+    { name = "firebase-deploy", desc = "Deploy web assets, functions, & security rules" }
+  ]
 
 [[params.providers]]
   id = "aws"
@@ -43,13 +49,22 @@ disableKinds = ["taxonomy", "term", "rss"]
   blurb = "Lambda, App Runner & SAM workflows"
   status = "available"
   accent = "#FF9900"
+  skills = [
+    { name = "aws-project-setup", desc = "Configure AWS credentials, profile, & region settings" },
+    { name = "lambda-deploy", desc = "Package & deploy serverless functions to AWS Lambda" },
+    { name = "app-runner-deploy", desc = "Deploy serverless container web apps via App Runner" }
+  ]
 
 [[params.providers]]
   id = "vercel"
   name = "Vercel"
   blurb = "Edge & serverless functions"
-  status = "coming soon"
+  status = "available"
   accent = "#EDEBFF"
+  skills = [
+    { name = "vercel-project-setup", desc = "Authenticate, configure, & link local projects to Vercel" },
+    { name = "vercel-deploy", desc = "Deploy production/preview builds & configure environment variables" }
+  ]
 
 [[params.providers]]
   id = "netlify"
@@ -69,8 +84,13 @@ disableKinds = ["taxonomy", "term", "rss"]
   id = "azure"
   name = "Microsoft Azure"
   blurb = "Functions & Container Apps"
-  status = "coming soon"
+  status = "available"
   accent = "#0078D4"
+  skills = [
+    { name = "azure-project-setup", desc = "Authenticate with Azure CLI, configure subscriptions & resource groups" },
+    { name = "azure-functions-deploy", desc = "Build & publish serverless HTTP Azure Functions" },
+    { name = "azure-container-apps-deploy", desc = "Deploy scalable serverless containers to Azure Container Apps" }
+  ]
 
 [markup.goldmark.renderer]
   unsafe = true
