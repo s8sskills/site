@@ -8,6 +8,7 @@
   <nav class="site-nav">
     <a href="#providers">Providers</a>
     <a href="#how">How it works</a>
+    <a href="#share">Share Skills</a>
     <a href="{{ $site.Params.github }}" class="nav-cta" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
 </header>
@@ -105,6 +106,73 @@
         <p>{{ .body | markdownify }}</p>
       </div>
       {{ end }}
+    </div>
+  </section>
+
+  <section class="section" id="share">
+    <div class="share-grid">
+      <div class="share-info">
+        <h2 class="section-title">{{ $site.Params.contrib.title }}</h2>
+        <p class="section-lede">{{ $site.Params.contrib.subtitle }}</p>
+        <div class="share-card">
+          <h3>Why share your skills?</h3>
+          <ul class="share-bullets">
+            <li>
+              <span class="share-bullet-icon">✦</span>
+              <div class="share-bullet-text">
+                <strong>Empower AI Coding Agents</strong>
+                <p>Help agents build and deploy flawlessly on your favorite platforms by teaching them exact command-line steps and gotchas.</p>
+              </div>
+            </li>
+            <li>
+              <span class="share-bullet-icon">✦</span>
+              <div class="share-bullet-text">
+                <strong>Version-Controlled &amp; Peer-Reviewed</strong>
+                <p>Keep your production tips organized, pinned to Git, and polished through collaborative pull requests with serverless maintainers.</p>
+              </div>
+            </li>
+            <li>
+              <span class="share-bullet-icon">✦</span>
+              <div class="share-bullet-text">
+                <strong>Gain Expert Recognition</strong>
+                <p>Showcase your expertise and get noticed! Your skills are listed in our central community catalog and used by developers worldwide.</p>
+              </div>
+            </li>
+          </ul>
+          <div class="share-cta-wrapper">
+            <a class="btn btn-primary share-cta-btn" href="{{ $site.Params.contrib.link }}" target="_blank" rel="noopener">
+              Join the Community on GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="share-steps-wrapper">
+        <div class="share-steps-card">
+          <h3>How to Contribute</h3>
+          <div class="share-step-item">
+            <span class="share-step-badge">01</span>
+            <div class="share-step-content">
+              <h4>Fork a Repository</h4>
+              <p>Fork any existing vendor repo (like <code>aws</code>, <code>gcp</code>, <code>vercel</code>, or <code>azure</code>) or propose a new vendor under our organization.</p>
+            </div>
+          </div>
+          <div class="share-step-item">
+            <span class="share-step-badge">02</span>
+            <div class="share-step-content">
+              <h4>Write your SKILL.md</h4>
+              <p>Add a folder under <code>skills/</code> containing prompt-friendly instructions, active triggers, and code references.</p>
+            </div>
+          </div>
+          <div class="share-step-item">
+            <span class="share-step-badge">03</span>
+            <div class="share-step-content">
+              <h4>Open a Pull Request</h4>
+              <p>Submit your PR! Once merged, your skills instantly go live in our catalog and are installable via <code>npx skills add</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
