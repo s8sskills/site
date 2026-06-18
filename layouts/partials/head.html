@@ -24,5 +24,44 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "s8s skills Catalog",
+  "description": "{{ .Site.Params.description }}",
+  "url": "{{ .Permalink }}",
+  "numberOfItems": {{ len .Site.Params.providers }},
+  "itemListElement": [
+    {{ $first := true }}
+    {{ range $idx, $provider := .Site.Params.providers }}
+      {{ if .skills }}
+        {{ range $skillIdx, $skill := .skills }}
+          {{ if not $first }},{{ end }}
+          {{ $first = false }}
+          {
+            "@type": "SoftwareSourceCode",
+            "position": {{ add $idx 1 }},
+            "name": "{{ $skill.name }}",
+            "description": "{{ $skill.desc }}",
+            "programmingLanguage": "Markdown",
+            "codeRepository": "{{ $.Site.Params.github }}/{{ $provider.id }}",
+            "runtimePlatform": "{{ $provider.name }}",
+            "targetProduct": {
+              "@type": "SoftwareApplication",
+              "name": "s8s skills",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "All"
+            }
+          }
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
 {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
