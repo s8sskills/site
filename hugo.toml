@@ -12,6 +12,11 @@ disableKinds = ["taxonomy", "term", "rss"]
   github = "https://github.com/s8sskills"
   email = "hello@s8sskills.com"
 
+  [params.contrib]
+    title = "Share Your Great Skills"
+    subtitle = "We really want you to share your great skills! Help build the ultimate, open catalog of serverless automation. If you've written skills or support a cloud, we want them!"
+    link = "https://github.com/s8sskills"
+
   # The "s8s" wordmark is rendered as s·8·s; this is the expansion shown on hover/footer.
   expansion = "s — erverles — s"
 
