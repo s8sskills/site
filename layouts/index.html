@@ -67,6 +67,22 @@
         </div>
         <h3 class="provider-name">{{ .name }}</h3>
         <p class="provider-blurb">{{ .blurb }}</p>
+        {{ if .skills }}
+        <div class="provider-skills">
+          <span class="skills-label">Included skills</span>
+          <ul class="skills-list">
+            {{ range .skills }}
+            <li>
+              <span class="skill-dot">✦</span>
+              <div class="skill-info">
+                <span class="skill-name">{{ .name }}</span>
+                <span class="skill-desc">{{ .desc }}</span>
+              </div>
+            </li>
+            {{ end }}
+          </ul>
+        </div>
+        {{ end }}
         <div class="provider-cmd-wrapper">
           <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
           {{ if $available }}
