@@ -61,6 +61,18 @@ disableKinds = ["taxonomy", "term", "rss"]
   ]
 
 [[params.providers]]
+  id = "azure"
+  name = "Microsoft Azure"
+  blurb = "Functions & Container Apps"
+  status = "available"
+  accent = "#0078D4"
+  skills = [
+    { name = "azure-project-setup", desc = "Authenticate with Azure CLI, configure subscriptions & resource groups" },
+    { name = "azure-functions-deploy", desc = "Build & publish serverless HTTP Azure Functions" },
+    { name = "azure-container-apps-deploy", desc = "Deploy scalable serverless containers to Azure Container Apps" }
+  ]
+
+[[params.providers]]
   id = "vercel"
   name = "Vercel"
   blurb = "Edge & serverless functions"
@@ -72,29 +84,25 @@ disableKinds = ["taxonomy", "term", "rss"]
   ]
 
 [[params.providers]]
-  id = "netlify"
-  name = "Netlify"
-  blurb = "Functions & edge deploys"
-  status = "coming soon"
-  accent = "#32E6E2"
-
-[[params.providers]]
   id = "cloudflare"
   name = "Cloudflare"
   blurb = "Workers & Pages at the edge"
-  status = "coming soon"
+  status = "available"
   accent = "#F38020"
+  skills = [
+    { name = "cloudflare-project-setup", desc = "Install and authenticate Wrangler CLI, set up global/project configuration, and link local workspace directory to Cloudflare" },
+    { name = "cloudflare-workers-deploy", desc = "Deploy serverless code to Cloudflare Workers or static/SPA web assets to Cloudflare Pages using Wrangler CLI" }
+  ]
 
 [[params.providers]]
-  id = "azure"
-  name = "Microsoft Azure"
-  blurb = "Functions & Container Apps"
+  id = "netlify"
+  name = "Netlify"
+  blurb = "Functions & edge deploys"
   status = "available"
-  accent = "#0078D4"
+  accent = "#32E6E2"
   skills = [
-    { name = "azure-project-setup", desc = "Authenticate with Azure CLI, configure subscriptions & resource groups" },
-    { name = "azure-functions-deploy", desc = "Build & publish serverless HTTP Azure Functions" },
-    { name = "azure-container-apps-deploy", desc = "Deploy scalable serverless containers to Azure Container Apps" }
+    { name = "netlify-project-setup", desc = "Authenticate with Netlify CLI, initialize or link local code to a Netlify site, and configure basic routing/redirect configurations" },
+    { name = "netlify-deploy", desc = "Run production or preview builds, configure environment variables via CLI, deploy static assets and serverless/edge functions" }
   ]
 
 [markup.goldmark.renderer]
