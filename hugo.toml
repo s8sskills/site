@@ -1,13 +1,14 @@
 baseURL = "https://s8sskills.com/"
 locale = "en-us"
-title = "s8s skills — Serverless Skills for AI Agents (AWS Lambda, Cloud Run, Vercel, Azure)"
+title = "s8s skills — Serverless AI Skills & Serverless Agent Skills (Google Cloud Run, AWS Lambda, Vercel, Azure)"
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term", "rss"]
 
 [params]
-  tagline = "Serverless Skills for AI Coding Agents"
+  tagline = "Serverless AI Skills for Coding Agents"
   subtitle = "One command drops battle-tested serverless skills into your project, so your coding agent knows how to build and ship on every cloud."
-  description = "Battle-tested serverless skills for your AI coding agents. Instantly add Google Cloud Run skills, AWS Lambda skills, Vercel edge function skills, and Microsoft Azure Function skills to your project."
+  description = "Battle-tested Serverless AI Skills, Serverless Agent Skills, and serverless skills for your AI coding agents. Instantly add Google Cloud Run, AWS Lambda, Vercel edge, and Microsoft Azure Function skills to your project."
+  keywords = "Serverless Agent Skill, serverless skills, serverless AI Skills, Google Cloud Run, AWS Lambda, Vercel, Azure, AI coding agents, cursor skills, claude code, edge functions"
   install = "npx skills add s8sskills/gcp"
   github = "https://github.com/s8sskills"
   email = "hello@s8sskills.com"
