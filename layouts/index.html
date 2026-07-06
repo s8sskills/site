@@ -210,14 +210,21 @@
 </main>
 
 <footer class="site-footer">
-  <div class="footer-brand">
-    <img src="{{ "icon-48.png" | relURL }}" alt="" width="28" height="28" />
-    <span>s<span class="brand-8">8</span>sskills</span>
-  </div>
-  <p class="footer-note">“s8s” = <span class="mono">serverless</span> — the s, 8 letters, and s. Created by <a href="https://jasonsmith.io" target="_blank" rel="noopener" class="author-link">Jason (Jay) Smith</a>. Open source under MIT.</p>
-  <div class="footer-links">
-    <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">GitHub</a>
-    <a href="mailto:{{ $site.Params.email }}">Contact</a>
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="{{ "icon-48.png" | relURL }}" alt="" width="30" height="30" />
+      <span>s<span class="brand-8">8</span>sskills</span>
+    </div>
+    <p class="footer-note">
+      “s8s” = <span class="mono">serverless</span> — the s, 8 letters, and s. Created with ⚡ and Antigravity by <a href="https://jasonsmith.io" target="_blank" rel="noopener" class="author-link">Jason (Jay) Smith</a>.
+    </p>
+    <p class="footer-copyright">
+      &copy; 2026 s8sskills. Released under the MIT License.
+    </p>
+    <div class="footer-links">
+      <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:{{ $site.Params.email }}">Contact</a>
+    </div>
   </div>
 </footer>
 
