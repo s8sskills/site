@@ -1,10 +1,14 @@
 {{ define "main" }}
 {{ $site := .Site }}
 <header class="site-header">
-  <a class="brand" href="/" aria-label="s8s skills home">
-    <img class="brand-mark" src="{{ "logo.png" | relURL }}" alt="" width="56" height="54" />
-    <span class="brand-word">s<span class="brand-8">8</span>s<span class="brand-skills">skills</span></span>
-  </a>
+  <div class="brand">
+    <a href="https://hachidori.dev" target="_blank" rel="noopener" aria-label="Hachidori" class="brand-logo-link">
+      <img class="brand-mark" src="{{ "logo.png" | relURL }}" alt="" width="56" height="54" />
+    </a>
+    <a href="/" aria-label="s8s skills home" class="brand-text-link">
+      <span class="brand-word">s<span class="brand-8">8</span>s<span class="brand-skills">skills</span></span>
+    </a>
+  </div>
   <nav class="site-nav">
     <a href="#providers">Providers</a>
     <a href="#how">How it works</a>
@@ -210,7 +214,7 @@
     <img src="{{ "icon-48.png" | relURL }}" alt="" width="28" height="28" />
     <span>s<span class="brand-8">8</span>sskills</span>
   </div>
-  <p class="footer-note">“s8s” = <span class="mono">serverless</span> — the s, 8 letters, and s. Open source under MIT.</p>
+  <p class="footer-note">“s8s” = <span class="mono">serverless</span> — the s, 8 letters, and s. Created by <a href="https://jasonsmith.io" target="_blank" rel="noopener" class="author-link">Jason (Jay) Smith</a>. Open source under MIT.</p>
   <div class="footer-links">
     <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">GitHub</a>
     <a href="mailto:{{ $site.Params.email }}">Contact</a>
