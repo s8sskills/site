@@ -45,6 +45,7 @@ disableKinds = ["taxonomy", "term", "rss"]
   skills = [
     { name = "gcloud-project-setup", desc = "Configure gcloud CLI, active project, & authentication" },
     { name = "cloud-run-deploy", desc = "Deploy serverless containers to Cloud Run" },
+    { name = "cloud-run-agent-memory", desc = "Set up persistent serverless memory for Cloud Run AI agents using Firestore" },
     { name = "cloud-functions-deploy", desc = "Deploy HTTP & event-triggered Cloud Functions" },
     { name = "firebase-deploy", desc = "Deploy web assets, functions, & security rules" }
   ]
