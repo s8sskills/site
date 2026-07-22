@@ -280,7 +280,7 @@
     });
   });
 
-  // Live pack/skill filter for the provider ledger.
+  // Live pack/skill filter + hover-to-expand for the provider ledger.
   (function () {
     var input = document.getElementById('pack-filter');
     if (!input) return;
@@ -288,9 +288,10 @@
     var head = document.querySelector('.provider-index-head');
     var empty = document.getElementById('pack-filter-empty');
     var count = document.getElementById('pack-filter-count');
+    var query = function () { return input.value.trim().toLowerCase(); };
 
     input.addEventListener('input', function () {
-      var q = input.value.trim().toLowerCase();
+      var q = query();
       var shown = 0;
       rows.forEach(function (row) {
         var hit = !q || (row.dataset.search || '').indexOf(q) !== -1;
@@ -304,6 +305,17 @@
       if (empty) empty.hidden = shown > 0;
       if (count) count.textContent = q ? shown + ' of ' + rows.length + ' packs' : '';
     });
+
+    // On hover-capable devices the skills unfold on hover and fold back on
+    // leave; click/tap still toggles (and is the only path on touch).
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.skills-details').forEach(function (d) {
+        d.addEventListener('mouseenter', function () { d.open = true; });
+        d.addEventListener('mouseleave', function () {
+          if (!query()) d.open = false; // keep filter matches pinned open
+        });
+      });
+    }
   })();
 </script>
 {{ end }}

@@ -374,17 +374,17 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
 .skills-count {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 600;
   /* pull pale vendor accents toward ink so the count stays readable */
   color: color-mix(in srgb, var(--accent, var(--cyan-ink)) 55%, var(--ink));
   white-space: nowrap;
   background: var(--card);
   border: 1px solid color-mix(in srgb, var(--accent, var(--cyan-ink)) 45%, var(--border-strong));
-  border-radius: 6px;
-  padding: 0.28rem 0.6rem;
+  border-radius: 4px;
+  padding: 0.12rem 0.55rem;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .skills-details summary:hover .skills-count {
