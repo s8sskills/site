@@ -78,7 +78,7 @@ disableKinds = ["taxonomy", "term", "rss"]
   name = "Vercel"
   blurb = "Edge & serverless functions"
   status = "available"
-  accent = "#EDEBFF"
+  accent = "#171717"
   skills = [
     { name = "vercel-project-setup", desc = "Authenticate, configure, & link local projects to Vercel" },
     { name = "vercel-deploy", desc = "Deploy production/preview builds & configure environment variables" }

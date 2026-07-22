@@ -19,11 +19,37 @@
 
 <main>
   <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <p class="eyebrow">open serverless skill catalog</p>
-    <h1 class="hero-title">{{ $site.Params.tagline }}</h1>
-    <p class="hero-sub">{{ $site.Params.subtitle }}</p>
-    
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">open serverless skill catalog</p>
+        <h1 class="hero-title">{{ $site.Params.tagline }}</h1>
+        <p class="hero-sub">{{ $site.Params.subtitle }}</p>
+
+        <div class="terminal" role="group" aria-label="install command">
+          <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-name">your-project</span>
+          </div>
+          <div class="terminal-body">
+            <code id="install-cmd"><span class="prompt">$</span> {{ $site.Params.install }}</code>
+            <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#providers">Browse providers</a>
+          <a class="btn btn-ghost" href="{{ $site.Params.github }}" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-bird" aria-hidden="true">
+        <span class="shard shard-1"></span>
+        <span class="shard shard-2"></span>
+        <span class="shard shard-3"></span>
+        <img src="{{ "bird.png" | relURL }}" alt="" width="1100" height="1060" fetchpriority="high" />
+      </div>
+    </div>
+
     <div class="s8s-meaning-banner" id="about-s8s">
       <div class="banner-inner">
         <div class="banner-badge">What is s8s?</div>
@@ -40,22 +66,6 @@
           </p>
         </div>
       </div>
-    </div>
-
-    <div class="terminal" role="group" aria-label="install command">
-      <div class="terminal-bar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="terminal-name">your-project</span>
-      </div>
-      <div class="terminal-body">
-        <code id="install-cmd"><span class="prompt">$</span> {{ $site.Params.install }}</code>
-        <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
-      </div>
-    </div>
-
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#providers">Browse providers</a>
-      <a class="btn btn-ghost" href="{{ $site.Params.github }}" target="_blank" rel="noopener">View on GitHub</a>
     </div>
   </section>
 
@@ -78,43 +88,68 @@
   <section class="section" id="providers">
     <h2 class="section-title">Providers</h2>
     <p class="section-lede">A repo per cloud under <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">github.com/s8sskills</a>. Install any of them by id.</p>
-    <div class="provider-grid">
+    <div class="pack-filter">
+      <span class="pack-filter-icon" aria-hidden="true">◆</span>
+      <input id="pack-filter" type="search" placeholder="Filter packs &amp; skills — try “deploy” or “gcp”" aria-label="Filter providers and skills" autocomplete="off" />
+      <span class="pack-filter-count" id="pack-filter-count" aria-live="polite"></span>
+    </div>
+    <div class="provider-index">
+      <div class="provider-index-head" aria-hidden="true">
+        <span>pack</span>
+        <span>included skills</span>
+        <span>install</span>
+      </div>
       {{ range $site.Params.providers }}
       {{ $available := eq .status "available" }}
-      <a class="provider-card{{ if not $available }} is-soon{{ end }}"
-         {{ if $available }}href="{{ $site.Params.github }}/{{ .id }}" target="_blank" rel="noopener"{{ end }}
+      {{ $skillNames := slice }}
+      {{ range .skills }}{{ $skillNames = $skillNames | append .name }}{{ end }}
+      <div class="provider-row{{ if not $available }} is-soon{{ end }}"
          style="--accent: {{ .accent }}"
+         data-search="{{ .id }} {{ lower .name }} {{ lower .blurb }} {{ lower (delimit $skillNames " ") }}"
          {{ if $available }}itemscope itemtype="https://schema.org/SoftwareApplication"{{ end }}>
-        <div class="provider-top">
+        <div class="provider-meta">
           <span class="provider-id">{{ .id }}</span>
+          <h3 class="provider-name" {{ if $available }}itemprop="name"{{ end }}>
+            {{ if $available }}<a href="{{ $site.Params.github }}/{{ .id }}" target="_blank" rel="noopener">{{ .name }}<span class="ext" aria-hidden="true"> ↗</span></a>{{ else }}{{ .name }}{{ end }}
+          </h3>
+          <p class="provider-blurb" {{ if $available }}itemprop="description"{{ end }}>{{ .blurb }}</p>
           <span class="badge {{ if $available }}badge-on{{ else }}badge-soon{{ end }}">{{ .status }}</span>
         </div>
-        <h3 class="provider-name" {{ if $available }}itemprop="name"{{ end }}>{{ .name }}</h3>
-        <p class="provider-blurb" {{ if $available }}itemprop="description"{{ end }}>{{ .blurb }}</p>
-        {{ if .skills }}
         <div class="provider-skills">
-          <span class="skills-label">Included skills</span>
-          <ul class="skills-list">
-            {{ range .skills }}
-            <li>
-              <span class="skill-dot">✦</span>
-              <div class="skill-info" itemscope itemtype="https://schema.org/SoftwareSourceCode">
-                <span class="skill-name" itemprop="name">{{ .name }}</span>
-                <span class="skill-desc" itemprop="description">{{ .desc }}</span>
-              </div>
-            </li>
-            {{ end }}
-          </ul>
-        </div>
-        {{ end }}
-        <div class="provider-cmd-wrapper">
-          <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
-          {{ if $available }}
-          <button class="copy-btn provider-copy-btn" data-copy="npx skills add s8sskills/{{ .id }}" aria-label="Copy command">Copy</button>
+          {{ if .skills }}
+          {{ $n := len .skills }}
+          <details class="skills-details">
+            <summary>
+              <span class="skills-count">✦ {{ $n }} skill{{ if ne $n 1 }}s{{ end }} <span class="skills-caret" aria-hidden="true">▾</span></span>
+              <span class="skills-preview">{{ range $i, $s := .skills }}{{ if $i }} · {{ end }}{{ $s.name }}{{ end }}</span>
+            </summary>
+            <ul class="skills-list">
+              {{ range .skills }}
+              <li>
+                <span class="skill-dot">✦</span>
+                <div class="skill-info" itemscope itemtype="https://schema.org/SoftwareSourceCode">
+                  <span class="skill-name" itemprop="name">{{ .name }}</span>
+                  <span class="skill-desc" itemprop="description">{{ .desc }}</span>
+                </div>
+              </li>
+              {{ end }}
+            </ul>
+          </details>
+          {{ else }}
+          <span class="skills-empty">Pack in flight — skills landing soon.</span>
           {{ end }}
         </div>
-      </a>
+        <div class="provider-install">
+          <div class="provider-cmd-wrapper">
+            <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
+            {{ if $available }}
+            <button class="copy-btn provider-copy-btn" data-copy="npx skills add s8sskills/{{ .id }}" aria-label="Copy command">Copy</button>
+            {{ end }}
+          </div>
+        </div>
+      </div>
       {{ end }}
+      <p class="pack-filter-empty" id="pack-filter-empty" hidden>No packs match — try a broader term, or <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">propose the skill on GitHub</a>.</p>
     </div>
   </section>
 
@@ -244,5 +279,43 @@
       });
     });
   });
+
+  // Live pack/skill filter + hover-to-expand for the provider ledger.
+  (function () {
+    var input = document.getElementById('pack-filter');
+    if (!input) return;
+    var rows = Array.prototype.slice.call(document.querySelectorAll('.provider-row'));
+    var head = document.querySelector('.provider-index-head');
+    var empty = document.getElementById('pack-filter-empty');
+    var count = document.getElementById('pack-filter-count');
+    var query = function () { return input.value.trim().toLowerCase(); };
+
+    input.addEventListener('input', function () {
+      var q = query();
+      var shown = 0;
+      rows.forEach(function (row) {
+        var hit = !q || (row.dataset.search || '').indexOf(q) !== -1;
+        row.hidden = !hit;
+        if (hit) shown++;
+        // surface matching skills while a query is active
+        var details = row.querySelector('.skills-details');
+        if (details) details.open = !!q && hit;
+      });
+      if (head) head.style.visibility = shown ? '' : 'hidden';
+      if (empty) empty.hidden = shown > 0;
+      if (count) count.textContent = q ? shown + ' of ' + rows.length + ' packs' : '';
+    });
+
+    // On hover-capable devices the skills unfold on hover and fold back on
+    // leave; click/tap still toggles (and is the only path on touch).
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll('.skills-details').forEach(function (d) {
+        d.addEventListener('mouseenter', function () { d.open = true; });
+        d.addEventListener('mouseleave', function () {
+          if (!query()) d.open = false; // keep filter matches pinned open
+        });
+      });
+    }
+  })();
 </script>
 {{ end }}
