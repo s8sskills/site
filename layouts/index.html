@@ -88,22 +88,26 @@
   <section class="section" id="providers">
     <h2 class="section-title">Providers</h2>
     <p class="section-lede">A repo per cloud under <a href="{{ $site.Params.github }}" target="_blank" rel="noopener">github.com/s8sskills</a>. Install any of them by id.</p>
-    <div class="provider-grid">
+    <div class="provider-index">
+      <div class="provider-index-head" aria-hidden="true">
+        <span>pack</span>
+        <span>included skills</span>
+        <span>install</span>
+      </div>
       {{ range $site.Params.providers }}
       {{ $available := eq .status "available" }}
-      <a class="provider-card{{ if not $available }} is-soon{{ end }}"
+      <a class="provider-row{{ if not $available }} is-soon{{ end }}"
          {{ if $available }}href="{{ $site.Params.github }}/{{ .id }}" target="_blank" rel="noopener"{{ end }}
          style="--accent: {{ .accent }}"
          {{ if $available }}itemscope itemtype="https://schema.org/SoftwareApplication"{{ end }}>
-        <div class="provider-top">
+        <div class="provider-meta">
           <span class="provider-id">{{ .id }}</span>
+          <h3 class="provider-name" {{ if $available }}itemprop="name"{{ end }}>{{ .name }}</h3>
+          <p class="provider-blurb" {{ if $available }}itemprop="description"{{ end }}>{{ .blurb }}</p>
           <span class="badge {{ if $available }}badge-on{{ else }}badge-soon{{ end }}">{{ .status }}</span>
         </div>
-        <h3 class="provider-name" {{ if $available }}itemprop="name"{{ end }}>{{ .name }}</h3>
-        <p class="provider-blurb" {{ if $available }}itemprop="description"{{ end }}>{{ .blurb }}</p>
-        {{ if .skills }}
         <div class="provider-skills">
-          <span class="skills-label">Included skills</span>
+          {{ if .skills }}
           <ul class="skills-list">
             {{ range .skills }}
             <li>
@@ -115,13 +119,17 @@
             </li>
             {{ end }}
           </ul>
-        </div>
-        {{ end }}
-        <div class="provider-cmd-wrapper">
-          <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
-          {{ if $available }}
-          <button class="copy-btn provider-copy-btn" data-copy="npx skills add s8sskills/{{ .id }}" aria-label="Copy command">Copy</button>
+          {{ else }}
+          <span class="skills-empty">Pack in flight — skills landing soon.</span>
           {{ end }}
+        </div>
+        <div class="provider-install">
+          <div class="provider-cmd-wrapper">
+            <code class="provider-cmd">npx skills add s8sskills/{{ .id }}</code>
+            {{ if $available }}
+            <button class="copy-btn provider-copy-btn" data-copy="npx skills add s8sskills/{{ .id }}" aria-label="Copy command">Copy</button>
+            {{ end }}
+          </div>
         </div>
       </a>
       {{ end }}
