@@ -19,11 +19,37 @@
 
 <main>
   <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <p class="eyebrow">open serverless skill catalog</p>
-    <h1 class="hero-title">{{ $site.Params.tagline }}</h1>
-    <p class="hero-sub">{{ $site.Params.subtitle }}</p>
-    
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">open serverless skill catalog</p>
+        <h1 class="hero-title">{{ $site.Params.tagline }}</h1>
+        <p class="hero-sub">{{ $site.Params.subtitle }}</p>
+
+        <div class="terminal" role="group" aria-label="install command">
+          <div class="terminal-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-name">your-project</span>
+          </div>
+          <div class="terminal-body">
+            <code id="install-cmd"><span class="prompt">$</span> {{ $site.Params.install }}</code>
+            <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#providers">Browse providers</a>
+          <a class="btn btn-ghost" href="{{ $site.Params.github }}" target="_blank" rel="noopener">View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-bird" aria-hidden="true">
+        <span class="shard shard-1"></span>
+        <span class="shard shard-2"></span>
+        <span class="shard shard-3"></span>
+        <img src="{{ "bird.png" | relURL }}" alt="" width="1100" height="1060" fetchpriority="high" />
+      </div>
+    </div>
+
     <div class="s8s-meaning-banner" id="about-s8s">
       <div class="banner-inner">
         <div class="banner-badge">What is s8s?</div>
@@ -40,22 +66,6 @@
           </p>
         </div>
       </div>
-    </div>
-
-    <div class="terminal" role="group" aria-label="install command">
-      <div class="terminal-bar">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span class="terminal-name">your-project</span>
-      </div>
-      <div class="terminal-body">
-        <code id="install-cmd"><span class="prompt">$</span> {{ $site.Params.install }}</code>
-        <button class="copy-btn" data-copy="{{ $site.Params.install }}" aria-label="Copy command">Copy</button>
-      </div>
-    </div>
-
-    <div class="hero-cta">
-      <a class="btn btn-primary" href="#providers">Browse providers</a>
-      <a class="btn btn-ghost" href="{{ $site.Params.github }}" target="_blank" rel="noopener">View on GitHub</a>
     </div>
   </section>
 
