@@ -362,24 +362,36 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
 .skills-details summary {
   list-style: none;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.7rem;
   min-width: 0;
   cursor: pointer;
-  padding: 0.15rem 0;
   -webkit-user-select: none;
   user-select: none;
 }
 .skills-details summary::-webkit-details-marker { display: none; }
+/* the toggle reads as a control: bordered chip with count + caret */
 .skills-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   /* pull pale vendor accents toward ink so the count stays readable */
   color: color-mix(in srgb, var(--accent, var(--cyan-ink)) 55%, var(--ink));
   white-space: nowrap;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--accent, var(--cyan-ink)) 45%, var(--border-strong));
+  border-radius: 6px;
+  padding: 0.28rem 0.6rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.provider-row.is-soon .skills-count { color: var(--faint); }
+.skills-details summary:hover .skills-count {
+  border-color: color-mix(in srgb, var(--accent, var(--cyan-ink)) 80%, var(--ink));
+  box-shadow: 0 2px 8px -4px rgba(36, 30, 70, 0.35);
+}
+.provider-row.is-soon .skills-count { color: var(--faint); border-color: var(--border); }
 .skills-preview {
   flex: 1;
   min-width: 0;
@@ -391,13 +403,12 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
   color: var(--faint);
 }
 .skills-caret {
-  font-size: 0.7rem;
-  color: var(--faint);
+  font-size: 0.62rem;
+  color: currentColor;
   transition: transform 0.15s;
 }
 .skills-details[open] .skills-caret { transform: rotate(180deg); }
 .skills-details[open] .skills-preview { visibility: hidden; }
-.skills-details summary:hover .skills-count { text-decoration: underline; text-underline-offset: 3px; }
 .skills-details[open] .skills-list { margin-top: 0.8rem; }
 .skills-list {
   list-style: none;

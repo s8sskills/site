@@ -120,9 +120,8 @@
           {{ $n := len .skills }}
           <details class="skills-details">
             <summary>
-              <span class="skills-count">✦ {{ $n }} skill{{ if ne $n 1 }}s{{ end }}</span>
+              <span class="skills-count">✦ {{ $n }} skill{{ if ne $n 1 }}s{{ end }} <span class="skills-caret" aria-hidden="true">▾</span></span>
               <span class="skills-preview">{{ range $i, $s := .skills }}{{ if $i }} · {{ end }}{{ $s.name }}{{ end }}</span>
-              <span class="skills-caret" aria-hidden="true">▾</span>
             </summary>
             <ul class="skills-list">
               {{ range .skills }}
