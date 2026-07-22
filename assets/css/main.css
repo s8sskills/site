@@ -259,6 +259,50 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
 .what-points li:nth-child(3n) .tick { color: var(--cyan-ink); }
 
 /* providers — a package-index ledger, not a card grid */
+.pack-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 1.1rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+}
+.pack-filter:focus-within { border-color: var(--indigo-ink); }
+.pack-filter-icon {
+  font-size: 0.6rem;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+#pack-filter {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+#pack-filter::placeholder { color: var(--faint); }
+.pack-filter-count {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--faint);
+  white-space: nowrap;
+}
+.pack-filter-empty {
+  padding: 1.6rem 1.2rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--border);
+}
+.pack-filter-empty a { color: var(--indigo-ink); border-bottom: 1px solid rgba(79, 72, 201, 0.35); }
+
 .provider-index {
   border-top: 2px solid var(--ink);
 }
@@ -308,10 +352,53 @@ h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
 .badge-on { color: var(--cyan-ink); background: rgba(47, 190, 220, 0.12); border: 1px solid rgba(14, 127, 158, 0.35); }
 .badge-soon { color: var(--faint); background: var(--paper-2); border: 1px solid var(--border); }
 .provider-name { font-size: 1.18rem; font-weight: 700; margin: 0; color: var(--ink); }
+.provider-name a { transition: color 0.15s; }
+.provider-name a:hover { color: var(--indigo-ink); }
+.provider-name .ext { font-size: 0.75em; color: var(--faint); }
 .provider-blurb { color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.45; }
 
-/* skills column */
+/* skills column — collapsed to a count + preview line, expands on demand */
 .provider-skills { min-width: 0; }
+.skills-details summary {
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  min-width: 0;
+  cursor: pointer;
+  padding: 0.15rem 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.skills-details summary::-webkit-details-marker { display: none; }
+.skills-count {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  /* pull pale vendor accents toward ink so the count stays readable */
+  color: color-mix(in srgb, var(--accent, var(--cyan-ink)) 55%, var(--ink));
+  white-space: nowrap;
+}
+.provider-row.is-soon .skills-count { color: var(--faint); }
+.skills-preview {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--faint);
+}
+.skills-caret {
+  font-size: 0.7rem;
+  color: var(--faint);
+  transition: transform 0.15s;
+}
+.skills-details[open] .skills-caret { transform: rotate(180deg); }
+.skills-details[open] .skills-preview { visibility: hidden; }
+.skills-details summary:hover .skills-count { text-decoration: underline; text-underline-offset: 3px; }
+.skills-details[open] .skills-list { margin-top: 0.8rem; }
 .skills-list {
   list-style: none;
   margin: 0;
