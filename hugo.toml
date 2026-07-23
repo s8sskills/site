@@ -45,6 +45,8 @@ disableKinds = ["taxonomy", "term", "rss"]
   skills = [
     { name = "gcloud-project-setup", desc = "Configure gcloud CLI, active project, & authentication" },
     { name = "cloud-run-deploy", desc = "Deploy serverless containers to Cloud Run" },
+    { name = "cloud-run-pipeline", desc = "Rig CI/CD pipelines that deploy to Cloud Run from any CI tool" },
+    { name = "cloud-run-agent-memory", desc = "Persistent Firestore memory for Cloud Run AI agents" },
     { name = "cloud-functions-deploy", desc = "Deploy HTTP & event-triggered Cloud Functions" },
     { name = "firebase-deploy", desc = "Deploy web assets, functions, & security rules" }
   ]
@@ -110,22 +112,34 @@ disableKinds = ["taxonomy", "term", "rss"]
   id = "fastly"
   name = "Fastly"
   blurb = "Compute & edge functions on Fastly's CDN"
-  status = "coming soon"
+  status = "available"
   accent = "#FF282D"
+  skills = [
+    { name = "fastly-project-setup", desc = "Install the Fastly CLI, authenticate with an API token, & verify profiles" },
+    { name = "fastly-compute-deploy", desc = "Init, locally run, & deploy a Fastly Compute service (JS/TS/Rust/Go → Wasm at the edge)" }
+  ]
 
 [[params.providers]]
   id = "keda"
   name = "KEDA"
   blurb = "Event-driven autoscaling for Kubernetes workloads"
-  status = "coming soon"
+  status = "available"
   accent = "#326CE5"
+  skills = [
+    { name = "keda-install", desc = "Install the KEDA operator (Helm or YAML) & verify CRDs and the metrics API" },
+    { name = "keda-scale-workload", desc = "Write ScaledObjects with queue/cron/CPU triggers, scale to zero, & verify scaling" }
+  ]
 
 [[params.providers]]
   id = "knative"
   name = "Knative"
   blurb = "Serverless Serving & Eventing on Kubernetes"
-  status = "coming soon"
+  status = "available"
   accent = "#0865AD"
+  skills = [
+    { name = "knative-install", desc = "Install Knative Serving with Kourier networking, DNS, & the kn CLI" },
+    { name = "knative-service-deploy", desc = "Deploy Knative Services with revisions, canary traffic splits, & rollback" }
+  ]
 
 [markup.goldmark.renderer]
   unsafe = true
