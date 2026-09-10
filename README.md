@@ -40,13 +40,20 @@ python3 tools/make_og.py      # static/og-image.png     (1200x630 social card)
 
 Requires Python with Pillow and `rsvg-convert` on PATH (`brew install librsvg`).
 
-**The hummingbird master is not in this repo.** It lives in the Hachidori brand
-repo, which is the single source of truth for the bird across every property
-that uses it. `make_logo.py` expects a `Hachidori/brand/` checkout as a sibling
-of the s8sskills workspace; point elsewhere with `HACHIDORI_BRAND`:
+**The hummingbird master is not in this repo.** It lives in
+[jasonsmithio/hachidori](https://github.com/jasonsmithio/hachidori), the single
+source of truth for the bird across every property that uses it. `make_logo.py`
+expects that repo checked out as `hachidori/` beside this one in the s8sskills
+workspace:
 
 ```sh
-HACHIDORI_BRAND=/path/to/Hachidori/brand python3 tools/make_logo.py
+git clone git@github.com:jasonsmithio/hachidori.git   # as a sibling of this repo
+```
+
+Anywhere else, point at it explicitly:
+
+```sh
+HACHIDORI_BRAND=/path/to/hachidori/brand python3 tools/make_logo.py
 ```
 
 Only the three regeneration scripts need it — the generated results are
@@ -54,7 +61,7 @@ committed, so `hugo` builds and the deploy workflow never touch the brand repo.
 
 | File | What |
 | --- | --- |
-| `Hachidori/brand/hachidori-logo-1.png` | Source hummingbird art (4167², transparent) — **external**, see above |
+| `hachidori/brand/hachidori-logo-1.png` | Source hummingbird art (4167², transparent) — **external repo**, see above |
 | `assets/brand/badge.svg` | The skill medallion, vector |
 | `assets/brand/logo-mark.png` | Generated bird + medallion lockup |
 | `assets/brand/logo-mark-white.png` | White knockout of the lockup, for dark backgrounds |

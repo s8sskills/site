@@ -5,10 +5,10 @@ full s8sskills logo asset set (mark PNGs + favicons).
 Run from the site root:  python3 tools/make_logo.py
 Requires: Pillow, rsvg-convert on PATH.
 
-The hummingbird master lives in the Hachidori brand repo, not here — this repo
+The hummingbird master lives in the hachidori brand repo, not here — this repo
 only commits the generated results, so the site build never needs it. Point at
-a checkout with HACHIDORI_BRAND, or keep one as a sibling of the s8sskills
-workspace (the default below).
+a checkout with HACHIDORI_BRAND, or keep one beside this repo in the workspace
+(the default below).
 """
 import os
 import subprocess
@@ -20,10 +20,10 @@ BRAND = os.path.join(ROOT, "assets", "brand")
 STATIC = os.path.join(ROOT, "static")
 BADGE_SVG = os.path.join(BRAND, "badge.svg")
 
-# ROOT is .../Serverless/S8S-Skills/S8S-Skills-Workspace/site, so the sibling
-# Hachidori checkout is four levels up.
+# This repo sits in the s8sskills workspace next to a checkout of
+# github.com/jasonsmithio/hachidori, so the brand art is one level up.
 DEFAULT_BRAND_HOME = os.path.normpath(
-    os.path.join(ROOT, "..", "..", "..", "Hachidori", "brand")
+    os.path.join(ROOT, "..", "hachidori", "brand")
 )
 BRAND_HOME = os.environ.get("HACHIDORI_BRAND", DEFAULT_BRAND_HOME)
 BIRD = os.path.join(BRAND_HOME, "hachidori-logo-1.png")
@@ -36,10 +36,12 @@ def require_bird():
     sys.exit(
         f"Hummingbird master not found: {BIRD}\n"
         "\n"
-        "The master art lives in the Hachidori brand repo, not in this one.\n"
-        "Clone it next to the s8sskills workspace, or set HACHIDORI_BRAND:\n"
+        "The master art lives in the hachidori brand repo, not in this one:\n"
+        "    git clone git@github.com:jasonsmithio/hachidori.git\n"
         "\n"
-        "    HACHIDORI_BRAND=/path/to/Hachidori/brand python3 tools/make_logo.py\n"
+        "Put it beside this repo in the workspace, or set HACHIDORI_BRAND:\n"
+        "\n"
+        "    HACHIDORI_BRAND=/path/to/hachidori/brand python3 tools/make_logo.py\n"
     )
 
 
