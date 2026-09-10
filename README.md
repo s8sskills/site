@@ -40,9 +40,24 @@ python3 tools/make_og.py      # static/og-image.png     (1200x630 social card)
 
 Requires Python with Pillow and `rsvg-convert` on PATH (`brew install librsvg`).
 
+**The hummingbird master is not in this repo.** It lives in the Hachidori brand
+repo, which is the single source of truth for the bird across every property
+that uses it. `make_logo.py` expects a `Hachidori/brand/` checkout as a sibling
+of the s8sskills workspace; point elsewhere with `HACHIDORI_BRAND`:
+
+```sh
+HACHIDORI_BRAND=/path/to/Hachidori/brand python3 tools/make_logo.py
+```
+
+Only the three regeneration scripts need it — the generated results are
+committed, so `hugo` builds and the deploy workflow never touch the brand repo.
+
 | File | What |
 | --- | --- |
-| `assets/brand/hachidori-1.png` | Source hummingbird art (4167², transparent) |
+| `Hachidori/brand/hachidori-logo-1.png` | Source hummingbird art (4167², transparent) — **external**, see above |
+| `assets/brand/badge.svg` | The skill medallion, vector |
+| `assets/brand/logo-mark.png` | Generated bird + medallion lockup |
+| `assets/brand/logo-mark-white.png` | White knockout of the lockup, for dark backgrounds |
 | `tools/make_badge.py` | Generates the skill-medallion SVG from the shared palette |
 | `tools/make_logo.py` | Composites bird + medallion, emits favicons/app icons |
 | `tools/og.svg` / `tools/make_og.py` | Social card (mark embedded as data URI) |

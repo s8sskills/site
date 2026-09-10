@@ -4,16 +4,43 @@ full s8sskills logo asset set (mark PNGs + favicons).
 
 Run from the site root:  python3 tools/make_logo.py
 Requires: Pillow, rsvg-convert on PATH.
+
+The hummingbird master lives in the Hachidori brand repo, not here — this repo
+only commits the generated results, so the site build never needs it. Point at
+a checkout with HACHIDORI_BRAND, or keep one as a sibling of the s8sskills
+workspace (the default below).
 """
 import os
 import subprocess
+import sys
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BRAND = os.path.join(ROOT, "assets", "brand")
 STATIC = os.path.join(ROOT, "static")
-BIRD = os.path.join(BRAND, "hachidori-1.png")
 BADGE_SVG = os.path.join(BRAND, "badge.svg")
+
+# ROOT is .../Serverless/S8S-Skills/S8S-Skills-Workspace/site, so the sibling
+# Hachidori checkout is four levels up.
+DEFAULT_BRAND_HOME = os.path.normpath(
+    os.path.join(ROOT, "..", "..", "..", "Hachidori", "brand")
+)
+BRAND_HOME = os.environ.get("HACHIDORI_BRAND", DEFAULT_BRAND_HOME)
+BIRD = os.path.join(BRAND_HOME, "hachidori-logo-1.png")
+
+
+def require_bird():
+    """Fail loudly and usefully when the brand repo isn't where we expect."""
+    if os.path.isfile(BIRD):
+        return
+    sys.exit(
+        f"Hummingbird master not found: {BIRD}\n"
+        "\n"
+        "The master art lives in the Hachidori brand repo, not in this one.\n"
+        "Clone it next to the s8sskills workspace, or set HACHIDORI_BRAND:\n"
+        "\n"
+        "    HACHIDORI_BRAND=/path/to/Hachidori/brand python3 tools/make_logo.py\n"
+    )
 
 
 def render_badge(size):
@@ -56,6 +83,7 @@ def square_pad(img, pad_frac=0.06, bg=(0, 0, 0, 0)):
 
 
 def main():
+    require_bird()
     os.makedirs(STATIC, exist_ok=True)
 
     # Full lockup (hummingbird + medallion) for in-page logo use.
